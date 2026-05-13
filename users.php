@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Manajemen User - naelaimut</title>
+  <title>User - naelaimut</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -28,8 +28,6 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-
-
 </head>
 
 <body>
@@ -48,18 +46,10 @@
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
-
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -122,44 +112,38 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link collapsed" href="index.php">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
-
-      
-
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="kategori_produk.php">
           <i class="bi bi-tags"></i>
           <span>Kategori Produk</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-faq.html">
-          <i class="bi bi-box"></i>
+        <a class="nav-link collapsed" href="produk.php">
+          <i class="bi bi-box-seam"></i>
           <span>Data Produk</span>
         </a>
-      </li><!-- End F.A.Q Page Nav -->
+      </li><!-- End Data Produk Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
+        <a class="nav-link collapsed" href="laporan.php">
           <i class="bi bi-bar-chart-line"></i>
           <span>Laporan</span>
         </a>
-      </li><!-- End Contact Page Nav -->
+      </li><!-- End Laporan Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
+        <a class="nav-link " href="user.php">
           <i class="bi bi-people"></i>
           <span>Manajemen User</span>
         </a>
       </li><!-- End Register Page Nav -->
-
-      
-     
     </ul>
 
   </aside><!-- End Sidebar-->
@@ -181,65 +165,89 @@
         <div class="col-lg-12">
 
           <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Datatables</h5>
-              <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
-
-              <!-- Table with stripped rows -->
-              <table class="table datatable">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td>Developer</td>
-                    <td>35</td>
-                    <td>2014-12-05</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
-                    <td>2011-08-12</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
-                    <td>2012-06-11</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
-                    <td>2011-04-19</td>
-                  </tr>
-                </tbody>
-              </table>
-              <!-- End Table with stripped rows -->
-
+            <div class="card-body mt-3">
+              <a href="t_user.php" class="btn btn-primary"> Tambah Data</a>
             </div>
           </div>
-
         </div>
+      </div>
+      <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body mt-3">
+
+      <!-- Table with stripped rows -->
+      <table class="table datatable">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Dibuat</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          include "koneksi.php";
+
+          $no = 1;
+          $sql = mysqli_query($conn, "SELECT * FROM users");
+
+          while ($data = mysqli_fetch_array($sql)) {
+          ?>
+
+            <tr>
+              <td><?php echo $no++; ?></td>
+
+              <td><?php echo $data['name']; ?></td>
+
+              <td><?php echo $data['email']; ?></td>
+
+              <td><?php echo ucfirst($data['role']); ?></td>
+
+              <td>
+                <?php
+                if ($data['is_active'] == 1) {
+                  echo '<span class="badge bg-success">Aktif</span>';
+                } else {
+                  echo '<span class="badge bg-danger">Nonaktif</span>';
+                }
+                ?>
+              </td>
+
+              <td>
+              <?= isset($data['created_at'])
+? date('d-m-Y H:i', strtotime($data['created_at']))
+: '-' ?>
+              </td>
+
+              <td>
+                <a href="e_user.php?id=<?php echo $data['id']; ?>"
+                  class="btn btn-warning btn-sm">
+                  Edit
+                </a>
+
+                <a href="h_user.php?id=<?php echo $data['id']; ?>"
+                  class="btn btn-danger btn-sm"
+                  onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?')">
+                  Hapus
+                </a>
+              </td>
+            </tr>
+          <?php } ?>
+        </tbody>
+      </table>
+      <!-- End Table with stripped rows -->
+
+      </div>
+      </div>
+
+      </div>
       </div>
     </section>
 
@@ -248,14 +256,14 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+      &copy; Copyright <strong><span>naelaimut</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
       <!-- All the links in the footer should remain intact. -->
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      Designed by <a href="https://www.instagram.com/najwaluthfii/">aininaela</a>
     </div>
   </footer><!-- End Footer -->
 
