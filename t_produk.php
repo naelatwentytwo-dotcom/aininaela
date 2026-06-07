@@ -1,5 +1,12 @@
 <?php
+session_start();
 include "koneksi.php";
+
+// Cek apakah user sudah login
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
 
 $auto = mysqli_query($conn, "select max(product_code) as max_code from products");
 $hasil = mysqli_fetch_array($auto);
@@ -93,69 +100,54 @@ if (isset($_POST['simpan'])) {
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php" class="logo d-flex align-items-center">
                 <img src="assets/img/logo.png" alt="">
-                <span class="d-none d-lg-block">Nama Sistem</span>
+                <span class="d-none d-lg-block">naelaimut</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
 
         <nav class="header-nav ms-auto">
-            <ul class="d-flex align-items-center">
+    <ul class="d-flex align-items-center">
 
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                    </a><!-- End Profile Iamge Icon -->
+        <li class="nav-item dropdown pe-3">
 
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                        <li class="dropdown-header">
-                            <h6>Kevin Anderson</h6>
-                            <span>Web Designer</span>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+            <a class="nav-link nav-profile d-flex align-items-center pe-0"
+                href="#"
+                data-bs-toggle="dropdown">
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-person"></i>
-                                <span>My Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                <img
+                    src="assets/img/profile-img.jpg"
+                    alt="Profile"
+                    class="rounded-circle" />
+            </a><!-- End Profile Image Icon -->
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-gear"></i>
-                                <span>Account Settings</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+            <ul
+                class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                                <i class="bi bi-question-circle"></i>
-                                <span>Need Help?</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                <li class="dropdown-header">
+                    <h6><?php echo isset($_SESSION['name']) ? $_SESSION['name'] : 'User'; ?></h6>
+                    <span><?php echo isset($_SESSION['role']) ? $_SESSION['role'] : 'Role'; ?></span>
+                </li>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>Sign Out</span>
-                            </a>
-                        </li>
+                <li>
+                    <hr class="dropdown-divider" />
+                </li>
 
-                    </ul><!-- End Profile Dropdown Items -->
-                </li><!-- End Profile Nav -->
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="logout.php">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Sign Out</span>
+                    </a>
+                </li>
 
             </ul>
-        </nav><!-- End Icons Navigation -->
+            <!-- End Profile Dropdown Items -->
+
+        </li>
+        <!-- End Profile Nav -->
+
+    </ul>
+</nav>
+<!-- End Icons Navigation -->
 
     </header><!-- End Header -->
 
@@ -285,7 +277,7 @@ if (isset($_POST['simpan'])) {
             &copy; Copyright <strong><span>naelaimut</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a href="">naela</a>
+            Designed by <a href="">aininaela</a>
         </div>
     </footer><!-- End Footer -->
 

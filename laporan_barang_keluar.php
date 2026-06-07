@@ -1,4 +1,14 @@
 <?php
+session_start();
+include "koneksi.php";
+
+// Cek apakah user sudah login
+if (!isset($_SESSION['login'])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+<?php
 // Require composer autoload
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -14,7 +24,6 @@ function query($query)
     while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;
     }
-
     return $rows;
 }
 
@@ -34,126 +43,76 @@ $data = query("
     FROM stock_logs sl
     JOIN products p ON sl.product_id = p.id
     JOIN categories c ON p.category_id = c.id
-    JOIN users u ON sl.created_by = u.id
-    WHERE sl.change_type = 'SUBTRACT'
+    LEFT JOIN users u ON sl.created_by = u.id
+    WHERE sl.change_type = 'REDUCE'
     ORDER BY sl.created_at DESC
 ");
 
+
 // Inisialisasi mPDF
-$mpdf = new \Mpdf\Mpdf([
-    'format' => 'A4-L'
-]);
+$mpdf = new \Mpdf\Mpdf();
 
 $html = '
+<!DOCTYPE html>
 <html>
 <head>
     <title>Laporan Barang Keluar</title>
-
     <style>
-        body {
-            font-family: sans-serif;
-        }
-
-        h1 {
-            text-align: center;
-            color: #262626;
-            margin-bottom: 5px;
-        }
-
-        h3 {
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        thead th {
-            background-color: #dc3545;
-            color: white;
-            padding: 10px;
-            font-size: 12px;
-        }
-
-        tbody td {
-            padding: 8px;
-            font-size: 11px;
-            border: 1px solid #ccc;
-        }
-
-        tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .text-right {
-            text-align: right;
-        }
-
-        .qty-keluar {
-            color: red;
-            font-weight: bold;
-        }
+        body { font-family: sans-serif; }
+        h1 { text-align: center; color: #262626; margin-bottom: 5px; }
+        h3 { text-align: center; margin-top: 0; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        thead th { background-color: #dc3545; color: white; padding: 10px; font-size: 12px; }
+        tbody td { padding: 8px; font-size: 11px; border: 1px solid #ccc; }
+        tbody tr:nth-child(even) { background-color: #f2f2f2; }
+        .text-center { text-align: center; }
+        .qty-keluar { color: blue; font-weight: bold; }
     </style>
 </head>
-
 <body>
+    <h1>naelaimut</h1>
+    <hr>
+    <h3>LAPORAN BARANG KELUAR</h3>
 
-<h1>naelaimut</h1>
-<hr>
-<h3>LAPORAN BARANG KELUAR</h3>
-
-<table>
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Tanggal</th>
-            <th>Kode Produk</th>
-            <th>Nama Produk</th>
-            <th>Kategori</th>
-            <th>Qty Keluar</th>
-            <th>Stok Sebelum</th>
-            <th>Stok Sesudah</th>
-            <th>Keterangan</th>
-            <th>Diinput Oleh</th>
-        </tr>
-    </thead>
-    <tbody>
-';
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Tanggal</th>
+                <th>Kode Produk</th>
+                <th>Nama Produk</th>
+                <th>Kategori</th>
+                <th>Qty Keluar</th>
+                <th>Stok Sebelum</th>
+                <th>Stok Sesudah</th>
+                <th>Keterangan</th>
+                <th>Diinput Oleh</th>
+            </tr>
+        </thead>
+        <tbody>';
 
 $no = 1;
-
 foreach ($data as $row) {
     $html .= '
-        <tr>
-            <td class="text-center">' . $no++ . '</td>
-            <td class="text-center">' . date('d-m-Y H:i', strtotime($row['created_at'])) . '</td>
-            <td>' . $row['product_code'] . '</td>
-            <td>' . $row['product_name'] . '</td>
-            <td>' . $row['category_name'] . '</td>
-            <td class="text-center qty-keluar">-' . $row['qty'] . '</td>
-            <td class="text-center">' . $row['stock_before'] . '</td>
-            <td class="text-center">' . $row['stock_after'] . '</td>
-            <td>' . $row['note'] . '</td>
-            <td class="text-center">' . $row['created_by'] . '</td>
-        </tr>
-    ';
+            <tr>
+                <td class="text-center">' . $no++ . '</td>
+                <td class="text-center">' . date('d-m-Y H:i', strtotime($row['created_at'])) . '</td>
+                <td>' . $row['product_code'] . '</td>
+                <td>' . $row['product_name'] . '</td>
+                <td>' . $row['category_name'] . '</td>
+                <td class="text-center qty-keluar">-' . $row['qty'] . '</td>
+                <td class="text-center">' . $row['stock_before'] . '</td>
+                <td class="text-center">' . $row['stock_after'] . '</td>
+                <td>' . $row['note'] . '</td>
+                <td class="text-center">' . $row['created_by'] . '</td>
+            </tr>';
 }
 
 $html .= '
-    </tbody>
-</table>
-
+        </tbody>
+    </table>
 </body>
-</html>
-';
+</html>';
 
 // Generate PDF
 $mpdf->WriteHTML($html);

@@ -1,14 +1,14 @@
 <?php
 // Require composer autoload
 require_once __DIR__ . '/vendor/autoload.php';
-
+require_once 'vendor/paragonie/random_compat/lib/random.php';
 // Koneksi database
 require_once('koneksi.php');
 
-function query($query)
+function query($sql)
 {
     global $conn;
-    $result = mysqli_query($conn, $query);
+    $result = mysqli_query($conn, $sql);
 
     $rows = [];
     while ($row = mysqli_fetch_assoc($result)) {
@@ -34,7 +34,7 @@ $data = query("
     FROM stock_logs sl
     JOIN products p ON sl.product_id = p.id
     JOIN categories c ON p.category_id = c.id
-    JOIN users u ON sl.created_by = u.id
+    LEFT JOIN users u ON sl.created_by = u.id
     WHERE sl.change_type = 'ADD'
     ORDER BY sl.created_at DESC
 ");
@@ -48,7 +48,6 @@ $html = '
 <html>
 <head>
     <title>Laporan Barang Masuk</title>
-
     <style>
         body {
             font-family: sans-serif;
@@ -103,33 +102,30 @@ $html = '
         }
     </style>
 </head>
-
 <body>
+    <h1>naelaimut</h1>
+    <hr>
+    <h3>LAPORAN BARANG MASUK</h3>
 
-<h1>naelaimut</h1>
-<hr>
-<h3>LAPORAN BARANG MASUK</h3>
-
-<table>
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Tanggal</th>
-            <th>Kode Produk</th>
-            <th>Nama Produk</th>
-            <th>Kategori</th>
-            <th>Qty Masuk</th>
-            <th>Stok Sebelum</th>
-            <th>Stok Sesudah</th>
-            <th>Keterangan</th>
-            <th>Diinput Oleh</th>
-        </tr>
-    </thead>
-    <tbody>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Tanggal</th>
+                <th>Kode Produk</th>
+                <th>Nama Produk</th>
+                <th>Kategori</th>
+                <th>Qty Masuk</th>
+                <th>Stok Sebelum</th>
+                <th>Stok Sesudah</th>
+                <th>Keterangan</th>
+                <th>Diinput Oleh</th>
+            </tr>
+        </thead>
+        <tbody>
 ';
 
 $no = 1;
-
 foreach ($data as $row) {
     $html .= '
         <tr>
@@ -148,9 +144,8 @@ foreach ($data as $row) {
 }
 
 $html .= '
-    </tbody>
-</table>
-
+        </tbody>
+    </table>
 </body>
 </html>
 ';
