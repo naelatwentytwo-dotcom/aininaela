@@ -9,6 +9,7 @@ if (!isset($_SESSION["login"])) {
 }
 ?>
 
+<?php
 $id = $_GET['id'];
 $sql = mysqli_query($conn, "SELECT * FROM categories WHERE id = '$id'");
 $hasil = mysqli_fetch_array($sql);

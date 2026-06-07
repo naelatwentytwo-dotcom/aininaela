@@ -119,8 +119,8 @@ function waktu_lalu($datetime)
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/ALDI.jpg" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/product-2.jpg" rel="icon">
+  <link href="assets/img/apple-touc.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -147,7 +147,7 @@ function waktu_lalu($datetime)
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.php" class="logo d-flex align-items-center">
-        <img src="assets/img/kupu.jpg" alt="">
+      <img src="assets/img/product-2.jpg" alt="">
         <span class="d-none d-lg-block">naelaimut</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -164,7 +164,7 @@ function waktu_lalu($datetime)
                 data-bs-toggle="dropdown">
 
                 <img
-                    src="assets/img/bunga.jpg"
+                    src="assets/img/messages-1.jpg"
                     alt="Profile"
                     class="rounded-circle" />
             </a><!-- End Profile Image Icon -->
@@ -173,8 +173,8 @@ function waktu_lalu($datetime)
                 class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 
                 <li class="dropdown-header">
-                    <h6><?php echo isset($_SESSION['name']) ? $_SESSION['name'] : 'User'; ?></h6>
-                    <span><?php echo isset($_SESSION['role']) ? $_SESSION['role'] : 'Role'; ?></span>
+                    <h6><?php echo isset($_SESSION['name']) ? $_SESSION['name'] : 'naela'; ?></h6>
+                    <span><?php echo isset($_SESSION['role']) ? $_SESSION['role'] : 'admin'; ?></span>
                 </li>
 
                 <li>
@@ -206,7 +206,7 @@ function waktu_lalu($datetime)
 
       <li class="nav-item">
         <a class="nav-link " href="index.html">
-          <i class="bi bi-grid"></i>
+          <i class="bi bi-speedometer2"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->

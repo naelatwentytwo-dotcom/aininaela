@@ -20,7 +20,7 @@ if (!isset($_SESSION['login'])) {
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/product-2.jpg" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -68,7 +68,7 @@ if (!isset($_SESSION['login'])) {
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.php" class="logo d-flex align-items-center">
-        <img src="assets/img/logo_wiby.png.png" alt="" width="45">
+        <img src="assets/img/product-2.jpg" alt="" width="45">
         <span class="d-none d-lg-block">naelaimut</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -80,7 +80,7 @@ if (!isset($_SESSION['login'])) {
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/foto_profile.png.png" alt="Profile" class="rounded-circle">
+            <img src="assets/img/messages-1.jpg" alt="Profile" class="rounded-circle">
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -112,7 +112,7 @@ if (!isset($_SESSION['login'])) {
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php">
-          <i class="bi bi-grid-1x2-fill"></i>
+          <i class="bi bi-speedometer2"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->

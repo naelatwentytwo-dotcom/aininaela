@@ -28,7 +28,7 @@ $total_stok_kritis = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM product
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/product-2.jpg" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -55,7 +55,7 @@ $total_stok_kritis = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM product
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.php" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
+        <img src="assets/img/product-2.jpg" alt="">
         <span class="d-none d-lg-block">naelaimut</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -72,7 +72,7 @@ $total_stok_kritis = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM product
                 data-bs-toggle="dropdown">
 
                 <img
-                    src="assets/img/profile-img.jpg"
+                    src="assets/img/messages-1.jpg"
                     alt="Profile"
                     class="rounded-circle" />
             </a><!-- End Profile Image Icon -->
@@ -114,7 +114,7 @@ $total_stok_kritis = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM product
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="index.php">
-          <i class="bi bi-grid"></i>
+          <i class="bi bi-speedometer2"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
@@ -142,7 +142,7 @@ $total_stok_kritis = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM product
       <li class="nav-item">
         <a class="nav-link collapsed" href="users.php">
           <i class="bi bi-people"></i>
-          <span>Manajemen User</span>
+          <span>Manajemen users</span>
         </a>
       </li><!-- End Register Page Nav -->
     </ul>

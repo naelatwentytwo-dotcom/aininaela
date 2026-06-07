@@ -71,7 +71,7 @@ if (isset($_POST['simpan'])) {
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/product-2.jpg" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -99,7 +99,7 @@ if (isset($_POST['simpan'])) {
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.php" class="logo d-flex align-items-center">
-                <img src="assets/img/logo.png" alt="">
+                <img src="assets/img/product-2.jpg" alt="">
                 <span class="d-none d-lg-block">naelaimut</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -115,7 +115,7 @@ if (isset($_POST['simpan'])) {
                 data-bs-toggle="dropdown">
 
                 <img
-                    src="assets/img/profile-img.jpg"
+                    src="assets/img/messages-1.jpg"
                     alt="Profile"
                     class="rounded-circle" />
             </a><!-- End Profile Image Icon -->
