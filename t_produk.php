@@ -166,7 +166,7 @@ if (isset($_POST['simpan'])) {
             <li class="nav-item">
                 <a class="nav-link collapsed" href="kategori_produk.php">
                     <i class="bi bi-person"></i>
-                    <span>Kategori Produk</span>
+                    <span>Produk</span>
                 </a>
             </li><!-- End Profile Page Nav -->
 
@@ -197,7 +197,7 @@ if (isset($_POST['simpan'])) {
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Kategori Produk</h1>
+            <h1>Produk</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
