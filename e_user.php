@@ -9,6 +9,9 @@ if (!isset($_SESSION["login"])) {
 }
 ?>
 
+<?php
+include "koneksi.php";
+
 $id   = $_GET['id'];
 $data = mysqli_query($conn, "SELECT * FROM users WHERE id='$id'");
 $user = mysqli_fetch_array($data);
@@ -226,7 +229,7 @@ if (isset($_POST['update'])) {
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Vertical Form</h5>
+                            <h5 class="card-title">Edit User</h5>
 
                             <!-- Vertical Form -->
                             <<form class="row g-3" method="post">
